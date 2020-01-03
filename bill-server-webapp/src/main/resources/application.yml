@@ -1,0 +1,27 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: @project.name.deploy@
+  profiles:
+    active: @profile.name@
+
+mybatis-plus:
+  type-aliases-package: com.bill.server.dao.entity
+  mapper-locations: "classpath:mapper/**/*Mapper.xml"
+  configuration:
+    map-underscore-to-camel-case: true
+    jdbc-type-for-null: null
+    cache-enabled: false
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      workerId: ${workerId}
+      datacenterId: ${datacenterId}
+      capital-mode: true
+      field-strategy: not_empty
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
