@@ -21,4 +21,12 @@ public interface UserService {
      * @return return
      */
     Result addUser(UserAddRequestDTO dto);
+
+    /**
+     * 通过用户名查找
+     * @param name 用户名
+     * @return result
+     */
+    Result queryByName(String name);
+
 }

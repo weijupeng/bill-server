@@ -2,7 +2,8 @@ package com.bill.server.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.bill.server.common.annotation.DecryptAnno;
+import com.bill.server.common.annotation.Decrypt;
+import com.bill.server.common.annotation.Encrypt;
 import lombok.Data;
 
 /**
@@ -14,7 +15,8 @@ import lombok.Data;
 public class User {
     @TableId
     private Long id;
-    @DecryptAnno
+    @Decrypt
+    @Encrypt
     private String name;
     private String password;
     private String description;

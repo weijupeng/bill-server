@@ -8,8 +8,9 @@ import java.lang.annotation.Target;
 /**
  * @author wjp
  * @date 2020/1/2 17:19
+ * 加密
  */
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DecryptAnno {
+public @interface Encrypt {
 }
