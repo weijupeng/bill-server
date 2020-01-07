@@ -23,10 +23,10 @@ public class UserController {
         return userService.query(id);
     }
 
-//    @GetMapping("/query/{name}")
-//    public Result queryByName(@PathVariable("name") String name) {
-//        return userService.queryByName(name);
-//    }
+    @GetMapping("/query_name/{name}")
+    public Result queryByName(@PathVariable("name") String name) {
+        return userService.queryByName(name);
+    }
 
 
     @PostMapping("/add")

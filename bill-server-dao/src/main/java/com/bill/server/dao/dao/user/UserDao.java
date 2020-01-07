@@ -2,8 +2,8 @@ package com.bill.server.dao.dao.user;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.bill.server.common.annotation.Decrypt;
-import com.bill.server.common.annotation.Encrypt;
+import com.bill.server.dao.annotation.Decrypt;
+import com.bill.server.dao.annotation.Encrypt;
 import com.bill.server.dao.dao.SuperDao;
 import com.bill.server.dao.entity.User;
 import com.bill.server.dao.mapper.user.UserMapper;
@@ -38,24 +38,26 @@ public class UserDao extends SuperDao<UserMapper, User> {
             baseMapper.insert(user);
         }
     }
+
+
     @Encrypt
     @Decrypt
-    public User queryUser(Long id) {
+    public List<User> queryUser(Long id) {
         LambdaQueryWrapper<User> lambdaQuery = Wrappers.lambdaQuery();
         lambdaQuery.eq(User::getId, id);
         User user = baseMapper.selectOne(lambdaQuery);
-        return user;
+        ArrayList<User> users = new ArrayList<>();
+        users.add(user);
+        users.add(user);
+        return users;
     }
+
 
     @Encrypt
     @Decrypt
     public List<User> getUserByName(String name) {
         LambdaQueryWrapper<User> query = Wrappers.lambdaQuery();
         query.eq(User::getName, name);
-        ArrayList<User> users = new ArrayList<>();
-        users.add(getOne(query));
-        users.add(getOne(query));
-        return users;
+        return baseMapper.selectList(query);
     }
-
 }

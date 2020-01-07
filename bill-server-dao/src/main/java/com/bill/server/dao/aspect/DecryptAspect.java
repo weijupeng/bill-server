@@ -1,7 +1,7 @@
-package com.bill.server.common.aspect;
+package com.bill.server.dao.aspect;
 
-import com.bill.server.common.annotation.Encrypt;
-import com.bill.server.common.utils.AesUtils;
+import com.bill.server.dao.annotation.Encrypt;
+import com.bill.server.dao.utils.AesUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -26,7 +26,7 @@ import java.util.Objects;
 @Component
 public class DecryptAspect {
 
-    @Pointcut("@annotation(com.bill.server.common.annotation.Decrypt)")
+    @Pointcut("@annotation(com.bill.server.dao.annotation.Decrypt)")
     public void pointcut() {
     }
 
@@ -73,7 +73,12 @@ public class DecryptAspect {
                             //暴力破解
                             field.setAccessible(true);
                             //获取当前字段的值并加密
-                            String aesEncrypt = AesUtils.aesDecrypt(String.valueOf(field.get(result)), AesUtils.key);
+                            String aesEncrypt;
+                            try {
+                                aesEncrypt = AesUtils.aesDecrypt(String.valueOf(field.get(result)), AesUtils.key);
+                            } catch (Exception e) {
+                                break;
+                            }
                             //设置值
                             field.set(result, aesEncrypt);
                         }

@@ -1,4 +1,4 @@
-package com.bill.server.common.utils;
+package com.bill.server.dao.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

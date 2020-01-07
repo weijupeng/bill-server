@@ -1,4 +1,4 @@
-package com.bill.server.common.annotation;
+package com.bill.server.dao.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

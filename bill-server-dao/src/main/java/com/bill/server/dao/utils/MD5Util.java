@@ -1,4 +1,4 @@
-package com.bill.server.common.utils;
+package com.bill.server.dao.utils;
 
 /**
  * @author kancy

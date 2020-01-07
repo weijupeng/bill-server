@@ -2,8 +2,8 @@ package com.bill.server.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.bill.server.common.annotation.Decrypt;
-import com.bill.server.common.annotation.Encrypt;
+import com.bill.server.dao.annotation.Decrypt;
+import com.bill.server.dao.annotation.Encrypt;
 import lombok.Data;
 
 /**
