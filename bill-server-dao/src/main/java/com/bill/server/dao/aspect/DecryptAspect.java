@@ -34,6 +34,10 @@ public class DecryptAspect {
     private Object resolveParameter(ProceedingJoinPoint joinPoint) throws Throwable {
         //执行完获取结果
         Object result = joinPoint.proceed();
+        if (Objects.isNull(result) || ClassUtils.isPrimitiveOrWrapper(result.getClass())
+                || result instanceof Map) {
+            return result;
+        }
         //是集合的话
         if (result instanceof Collection) {
             for (Object o : (Collection) result) {
@@ -42,16 +46,22 @@ public class DecryptAspect {
             return result;
         }
         //string类型
-        if (Objects.equals(result, String.class.getName())) {
-            return AesUtils.aesDecrypt(String.valueOf(result), AesUtils.key);
-        }
-        if (Objects.isNull(result) || ClassUtils.isPrimitiveOrWrapper(result.getClass())
-                || result instanceof Map) {
-            return result;
+        if (Objects.equals(result.getClass(), String.class)) {
+            return getString(result);
         }
         //是实体
         resolveEntity(result);
         return result;
+    }
+
+    private String getString(Object result) throws Exception {
+        String s = String.valueOf(result);
+        try {
+            s = AesUtils.aesDecrypt(s, AesUtils.key);
+        } catch (Exception e) {
+            return s;
+        }
+        return s;
     }
 
     private void resolveEntity(Object result) throws Exception {
@@ -73,14 +83,10 @@ public class DecryptAspect {
                             //暴力破解
                             field.setAccessible(true);
                             //获取当前字段的值并加密
-                            String aesEncrypt;
-                            try {
-                                aesEncrypt = AesUtils.aesDecrypt(String.valueOf(field.get(result)), AesUtils.key);
-                            } catch (Exception e) {
-                                break;
-                            }
+                            String aesEncrypt = getString(field.get(result));
                             //设置值
                             field.set(result, aesEncrypt);
+                            break;
                         }
                     }
                 }

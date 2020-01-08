@@ -30,6 +30,9 @@ mybatis-plus:
       logic-not-delete-value: 1
       db-type: mysql
 
+encrypt:
+  value: com.bill.server.dao.dao.user
+
 ---
 spring:
   profiles: dev

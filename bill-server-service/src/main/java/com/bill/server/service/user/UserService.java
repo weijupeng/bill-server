@@ -29,4 +29,11 @@ public interface UserService {
      */
     Result queryByName(String name);
 
+
+    /**
+     * 新增用户多个
+     * @param dto 实体
+     * @return return
+     */
+    Result addUsers(UserAddRequestDTO dto);
 }

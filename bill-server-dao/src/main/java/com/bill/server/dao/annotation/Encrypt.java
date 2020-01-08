@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @date 2020/1/2 17:19
  * 加密
  */
-@Target({ElementType.METHOD, ElementType.FIELD})
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Encrypt {
 }

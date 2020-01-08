@@ -33,4 +33,8 @@ public class UserController {
     public Result addUser(@Validated @RequestBody UserAddRequestDTO dto) {
         return userService.addUser(dto);
     }
+    @PostMapping("/adds")
+    public Result addUsers(@Validated @RequestBody UserAddRequestDTO dto) {
+        return userService.addUsers(dto);
+    }
 }

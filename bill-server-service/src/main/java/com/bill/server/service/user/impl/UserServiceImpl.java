@@ -7,11 +7,10 @@ import com.bill.server.dao.entity.User;
 import com.bill.server.service.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author wjp
@@ -27,11 +26,19 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         BeanUtils.copyProperties(dto, user);
         userDao.saveUser(user);
-//        ArrayList<User> users = new ArrayList<>();
-//        users.add(user);
-//        users.add(user);
-//        userDao.saveUsers(users);
         System.out.println(user);
+        return Result.success();
+    }
+
+    @Override
+    public Result addUsers(UserAddRequestDTO dto) {
+        User user = new User();
+        BeanUtils.copyProperties(dto, user);
+        ArrayList<User> users = new ArrayList<>();
+        users.add(user);
+        users.add(user);
+        userDao.saveUsers(users);
+        System.out.println("users = " + users);
         return Result.success();
     }
 

@@ -21,26 +21,21 @@ import java.util.List;
 @Slf4j
 public class UserDao extends SuperDao<UserMapper, User> {
 
-    @Encrypt
     public User queryUserById(Long id) {
         return baseMapper.queryUserById(id);
     }
 
-    @Encrypt
     public void saveUser(User user) {
         baseMapper.insert(user);
     }
 
-    @Encrypt
     public void saveUsers(List<User> users) {
-        log.info(users + "测试");
         for (User user : users) {
             baseMapper.insert(user);
         }
     }
 
 
-    @Encrypt
     @Decrypt
     public List<User> queryUser(Long id) {
         LambdaQueryWrapper<User> lambdaQuery = Wrappers.lambdaQuery();
@@ -52,12 +47,22 @@ public class UserDao extends SuperDao<UserMapper, User> {
         return users;
     }
 
-
-    @Encrypt
     @Decrypt
     public List<User> getUserByName(String name) {
-        LambdaQueryWrapper<User> query = Wrappers.lambdaQuery();
-        query.eq(User::getName, name);
-        return baseMapper.selectList(query);
+        User user = new User();
+        user.setName(name);
+        return baseMapper.selectUserByName(user);
+    }
+
+    @Decrypt
+    public List<User> getUserByUser(User user) {
+        return baseMapper.selectUserByPassword(user);
+    }
+
+    @Decrypt
+    public String getUserDesc(@Encrypt String s) {
+        User user = User.builder().name(s).build();
+        List<User> users = baseMapper.selectUserByName(user);
+        return users.get(1).getDescription();
     }
 }

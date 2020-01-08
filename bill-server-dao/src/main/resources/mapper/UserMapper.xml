@@ -5,4 +5,10 @@
     <select id="queryUserById" resultType="com.bill.server.dao.entity.User">
         select * from t_user where id =#{id}
     </select>
+    <select id="selectUserByPassword" resultType="com.bill.server.dao.entity.User">
+        select * from t_user where password =#{user.password}
+    </select>
+    <select id="selectUserByName" resultType="com.bill.server.dao.entity.User">
+        select * from t_user where name =#{user.name}
+    </select>
 </mapper>
