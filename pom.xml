@@ -25,7 +25,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <starter.version>2.1.3.RELEASE</starter.version>
+        <starter.version>2.5.12</starter.version>
         <mybatis.plus.version>3.2.0</mybatis.plus.version>
         <mysql.version>8.0.17</mysql.version>
         <lang3.version>3.8.1</lang3.version>
