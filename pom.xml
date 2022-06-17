@@ -29,7 +29,7 @@
         <mybatis.plus.version>3.2.0</mybatis.plus.version>
         <mysql.version>8.0.17</mysql.version>
         <lang3.version>3.8.1</lang3.version>
-        <fastjson.version>1.2.57</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <easypoi-annotation.version>3.2.0</easypoi-annotation.version>
     </properties>
 
